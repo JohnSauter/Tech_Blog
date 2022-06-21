@@ -1,38 +1,34 @@
 const router = require('express').Router();
-const { Project, User } = require('../models');
+const { Topic, response, User } = require('../models');
 const withAuth = require('../utils/auth');
 
-/* Home page shows the projects and their associated users.  */
+/* Home page shows the topics and their associated users.  */
 router.get('/', async (req, res) => {
   try {
-    const express_project_data = await Project.findAll({
+    const express_topic_data = await Topic.findAll({
       include: [User],
     });
 
-    const project_data = express_project_data.map((project) =>
-      project.get({ plain: true })
+    const topic_data = express_topic_data.map((topic) =>
+      topic.get({ plain: true })
     );
 
-    /* We wish to list the projects in alphabetical order
-     * by name.  Use the Unicode normalize function to be
-     * sure accented letters are sorted correctly whether
-     * or not they are composed.  */
-    project_data.sort(function (a, b) {
-      const x = a.name.normalize();
-      const y = b.name.normalize();
+    /* We wish to list the topics by date created.  */
+    topic_data.sort(function (a, b) {
+      const x = a.createdAt.toISOString();
+      const y = b.createdAt.toISOString();
       if (x < y) {
         return -1;
       }
       if (x > y) {
         return 1;
       }
-      return 0;
     });
 
     res.render('homepage', {
-      projects: { project_data },
+      topics: { topic_data },
       logged_in: req.session.logged_in,
-      page_title: 'Projects',
+      page_title: 'Topics',
     });
   } catch (err) {
     console.log(err);
