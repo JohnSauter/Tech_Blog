@@ -1,0 +1,37 @@
+<ul>
+  <li>name: {{user.name}}</li>
+  <li>email: {{user.email}}</li>
+  </ul>
+  <h3>Projects</h3>
+ <ul id="projects">
+  {{#each user.projects}}
+  <li> <a href='/project/{{this.id}}'></a>{{this.name}}
+     <button class="btn" id="delete_project" data-id="{{this.id}}">delete project</button>
+  </li>
+  {{/each}}
+  </ul>
+ </ul>
+
+<div class='login-card'>
+    <h2 class='page-title'>Create Project</h2>
+    <form class='form project_create_form'>
+      <div class='form-group'>
+        <label for='project_name'>Name:</label>
+        <input class='form-input' type='text' id='project_name' />
+      </div>
+      <div class='form-group'>
+        <label for='project_description'>Description</label>
+        <input class='form-input' type='text' id='project_description' />
+      </div>
+      <div class='form-group'>
+        <label for='project_funding'>Funding required:</label>
+        <input class='form-input' type='text' id='project_funding' />
+      </div>
+      <div class='form-group'>
+        <button class='btn btn-primary' type='submit'>create project</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src='./js/project.js'></script>
