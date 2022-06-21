@@ -1,8 +1,9 @@
 const sequelize = require('../config/connection');
-const { User, Project } = require('../models');
+const { User, Topic, Response } = require('../models');
 
 const userData = require('./userData.json');
-const projectData = require('./projectData.json');
+const topicData = require('./topicData.json');
+const responseData = require('./responseData.json');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -12,11 +13,21 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  /* As we create projects, randomly assign each to a user.  */
-  for (const project of projectData) {
-    await Project.create({
-      ...project,
+  /* As we create topics, randomly assign each to a user.  */
+  const topics = [];
+  for (const topic of topicData) {
+    const the_topic = await Topic.create({
+      ...topic,
       user_id: users[Math.floor(Math.random() * users.length)].id,
+    });
+    topics.push(the_topic);
+  };
+
+  /* As we create responses, randomly assign each to a topic.  */
+  for (const response of responseData) {
+    await Response.create({
+      ...response,
+      topic_id: topics[Math.floor(Math.random() * topics.length)].id,
     });
   }
 

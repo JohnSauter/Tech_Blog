@@ -11,17 +11,12 @@ Topic.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    title: {
+    subject: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     contents: {
-      type: DataTypes.STRING(65535),
-    },
-    date_created: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
+      type: DataTypes.TEXT,
     },
     user_id: {
       type: DataTypes.INTEGER,
@@ -39,4 +34,4 @@ Topic.init(
   }
 );
 
-module.exports = Project;
+module.exports = Topic;
