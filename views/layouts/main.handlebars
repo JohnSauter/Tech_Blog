@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang='en'>
 
   <head>
@@ -9,35 +8,55 @@
   </head>
 
   <body>
-    <header class='display-flex justify-space-between align-center p-2'>
-      <!-- Display the logout and dashboard buttons only if the user
+    <header class='grid-container fluid'>
+      <div class='grid-x grid-margin-x'>
+        <!-- Display the logout and dashboard buttons only if the user
         is logged in.  Otherwise, display the login, home page
-        and layout buttons.     
+        and dashboard buttons.     
         -->
-      {{#if logged_in}}
-        <nav>
-           <button class="btn" id="home">Home</button>
-          <button class="btn" id="dashboard">Dashboard</button>
-          <button class='btn' id='logout'>Logout</button>
-        </nav>
-      {{else}}
-        <nav>
-           <button class="btn" id="home">Home</button>
-          <button class="btn" id="dashboard">Dashboard</button>
-          <button class='btn' id='login'>login</button>
-        </nav>
-      {{/if}}
+        <div class='cell'>
+          {{#if logged_in}}
+            <div class='top-bar'>
+              <nav class='top-bar-left'>
+                <ul class='menu expanded'>
+                  <li><button class='button' id='home'>Home</button></li>
+                  <li><button
+                      class='button'
+                      id='dashboard'
+                    >Dashboard</button></li>
+                  <li><button class='button' id='logout'>Logout</button></li>
+                </ul>
+              </nav>
+            </div>
+          {{else}}
+            <div class='top-bar'>
+              <nav class='top-bar-left'>
+                <ul class='menu expanded'>
+                  <li><button class='button' id='home'>Home</button></li>
+                  <li><button
+                      class='button'
+                      id='dashboard'
+                    >Dashboard</button></li>
+                  <li><button class='button' id='login'>login</button></li>
+                </ul>
+              </nav>
+            </div>
+          {{/if}}
+        </div>
+      </div>
     </header>
-     <h1>
-        {{page_title}}
-      </h1>
-    <main class='container container-fluid mt-5'>
+    <h1>
+      {{page_title}}
+    </h1>
+    <main class='grid-x grid-container-fluid'>
+      <div class='grid-x grid-margin-x'>
       {{{body}}}
+      </div>
     </main>
     <footer>
 
     </footer>
-      <script src='/js/homepage_buttons.js'></script>
+    <script src='/js/homepage_buttons.js'></script>
   </body>
 
 </html>

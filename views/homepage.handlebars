@@ -1,12 +1,15 @@
 {{#each topics.topic_data}}
-  <div class='row align-center mb-5'>
-    <a href='/topic/{{this.id}}'>
-      <div class='col-md-6'>
+<div class="cell">
+<div class="card">
+      <a href='/topic/{{this.id}}'>
+      <div class='card-divider'>
         <h2>{{this.subject}}</h2>
       </div>
-      <div class='col-md-6'>
-        <h3>{{this.contents}}</h3>
+      <div class='card-section'>
+        <p>{{this.contents}}</p>
       </div>
     </a>
+  </div>
+  </div>
   </div>
 {{/each}}
