@@ -10,31 +10,34 @@
 
   <body>
     <header class='display-flex justify-space-between align-center p-2'>
-      <h1>
-        {{page_title}}
-      </h1>
-      <!-- Display a logout button only if the user
-        is logged in.  Otherwise, display login 
-        and layout buttons        
+      <!-- Display the logout and dashboard buttons only if the user
+        is logged in.  Otherwise, display the login, home page
+        and layout buttons.     
         -->
       {{#if logged_in}}
         <nav>
-          <button class="btn" id="profile">profile</button>
-          <button class='btn' id='logout'>logout</button>
+           <button class="btn" id="home">Home</button>
+          <button class="btn" id="dashboard">Dashboard</button>
+          <button class='btn' id='logout'>Logout</button>
         </nav>
       {{else}}
         <nav>
+           <button class="btn" id="home">Home</button>
+          <button class="btn" id="dashboard">Dashboard</button>
           <button class='btn' id='login'>login</button>
         </nav>
       {{/if}}
     </header>
+     <h1>
+        {{page_title}}
+      </h1>
     <main class='container container-fluid mt-5'>
       {{{body}}}
     </main>
     <footer>
 
     </footer>
-      <script src='/js/login_logout_buttons.js'></script>
+      <script src='/js/homepage_buttons.js'></script>
   </body>
 
 </html>

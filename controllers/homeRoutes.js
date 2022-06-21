@@ -1,13 +1,11 @@
 const router = require('express').Router();
-const { Topic, response, User } = require('../models');
+const { Topic, Response, User } = require('../models');
 const withAuth = require('../utils/auth');
 
-/* Home page shows the topics and their associated users.  */
+/* Home page shows the topics.  */
 router.get('/', async (req, res) => {
   try {
-    const express_topic_data = await Topic.findAll({
-      include: [User],
-    });
+    const express_topic_data = await Topic.findAll();
 
     const topic_data = express_topic_data.map((topic) =>
       topic.get({ plain: true })
@@ -28,7 +26,7 @@ router.get('/', async (req, res) => {
     res.render('homepage', {
       topics: { topic_data },
       logged_in: req.session.logged_in,
-      page_title: 'Topics',
+      page_title: 'The Tech Blog',
     });
   } catch (err) {
     console.log(err);
@@ -38,23 +36,23 @@ router.get('/', async (req, res) => {
 
 router.get('/login', (req, res) => {
   /* If the user is already logged in, send his browser
-   * to the profile page.  */
+   * the dashboard page.  */
   if (req.session.logged_in) {
-    res.redirect('/profile');
+    res.redirect('/dashboard');
     return;
   }
-  /* Otherwise, send his browser to the login page.  */
+  /* Otherwise, send his browser the login page.  */
   res.render('login');
 });
 
-router.get('/profile', withAuth, async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
   /* Display information about this user.  */
   const user_id = req.session.user_id;
   if (user_id === null) {
     res.status(404).end();
   }
   const express_user_data = await User.findByPk(user_id, {
-    include: [Project],
+    include: [Topic],
   });
   if (express_user_data === null) {
     res.status(404).end();
@@ -63,7 +61,7 @@ router.get('/profile', withAuth, async (req, res) => {
   res.render('one_user', {
     user: user_data,
     logged_in: req.session.logged_in,
-    page_title: 'User Profile',
+    page_title: 'Your Dashboard',
   });
 });
 

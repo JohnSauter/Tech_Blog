@@ -2,36 +2,32 @@
   <li>name: {{user.name}}</li>
   <li>email: {{user.email}}</li>
   </ul>
-  <h3>Projects</h3>
- <ul id="projects">
-  {{#each user.projects}}
-  <li> <a href='/project/{{this.id}}'></a>{{this.name}}
-     <button class="btn" id="delete_project" data-id="{{this.id}}">delete project</button>
+  <h3>My Topics</h3>
+ <ul id="topics">
+  {{#each user.topics}}
+  <li> <a href='/topic/{{this.id}}'></a>{{this.subject}}
+     <button class="btn" id="delete_topic" data-id="{{this.id}}">delete</button>
   </li>
   {{/each}}
   </ul>
  </ul>
 
 <div class='login-card'>
-    <h2 class='page-title'>Create Project</h2>
-    <form class='form project_create_form'>
+    <h2 class='page-title'>Create Topic</h2>
+    <form class='form topic_create_form'>
       <div class='form-group'>
-        <label for='project_name'>Name:</label>
-        <input class='form-input' type='text' id='project_name' />
+        <label for='topic_subject'>Subject:</label>
+        <input class='form-input' type='text' id='topic_subject' />
       </div>
       <div class='form-group'>
-        <label for='project_description'>Description</label>
-        <input class='form-input' type='text' id='project_description' />
+        <label for='topic_content'>Content</label>
+        <input class='form-input' type='text' id='topic_content' />
       </div>
       <div class='form-group'>
-        <label for='project_funding'>Funding required:</label>
-        <input class='form-input' type='text' id='project_funding' />
-      </div>
-      <div class='form-group'>
-        <button class='btn btn-primary' type='submit'>create project</button>
+        <button class='btn btn-primary' type='submit'>create topics</button>
       </div>
     </form>
   </div>
 </div>
 
-<script src='./js/project.js'></script>
+<script src='./js/topic.js'></script>
