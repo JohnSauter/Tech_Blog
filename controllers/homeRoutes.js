@@ -53,6 +53,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }
   const express_user_data = await User.findByPk(user_id, {
     include: [Topic],
+    attributes: { exclude: ['password'] },
   });
   if (express_user_data === null) {
     res.status(404).end();

@@ -16,8 +16,12 @@ const hbs = exphbs.create({ helpers });
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+let session_secret = process.env.SESSION_SECRET;
+if (!session_secret) {
+  session_secret = 'default session secret'
+}
 const sess = {
-  secret: 'Super secret secret',
+  secret: session_secret,
   cookie: {},
   resave: false,
   saveUninitialized: true,
