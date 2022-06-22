@@ -1,33 +1,46 @@
-<ul>
-  <li>name: {{user.name}}</li>
-  <li>email: {{user.email}}</li>
-  </ul>
-  <h3>My Topics</h3>
- <ul id="topics">
-  {{#each user.topics}}
-  <li> <a href='/topic/{{this.id}}'></a>{{this.subject}}
-     <button class="btn" id="delete_topic" data-id="{{this.id}}">delete</button>
-  </li>
-  {{/each}}
-  </ul>
- </ul>
-
-<div class='login-card'>
-    <h2 class='page-title'>Create Topic</h2>
-    <form class='form topic_create_form'>
-      <div class='form-group'>
-        <label for='topic_subject'>Subject:</label>
-        <input class='form-input' type='text' id='topic_subject' />
-      </div>
-      <div class='form-group'>
-        <label for='topic_content'>Content</label>
-        <input class='form-input' type='text' id='topic_content' />
-      </div>
-      <div class='form-group'>
-        <button class='btn btn-primary' type='submit'>create topics</button>
-      </div>
-    </form>
+<div class="cell">
+  <div class="card">
+    <div class="card-divider">
+      <h3>name: {{user.name}}</h3>
+    </div>
+    <div class="card-divider">
+      <h3>email: {{user.email}}</h3>
+    </div>
   </div>
+  <div class="card-section">
+    <h2>Your Topics</h2>
+    <ul id="topics">
+      {{#each user.topics}}
+      <li><a href='/topic/{{this.id}}'>{{this.subject}}</a>
+        <button class="button" data-id="{{this.id}}">delete</button>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
+</div>
+
+<div class='cell'>
+  <h2>Create Topic</h2>
+  <form id="topic_create_form">
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="cell">
+          <label>Subject
+            <input type="text" id='topic_subject' placeholder="subject">
+          </label>
+        </div>
+        <div class="cell">
+          <label>Contents
+            <textarea id='topic_content' placeholder="content"></textarea>
+          </label>
+          <div class='cell'>
+            <button class='button' type='submit'>submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
 
 <script src='./js/topic.js'></script>

@@ -15,7 +15,7 @@ Topic.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    contents: {
+    content: {
       type: DataTypes.TEXT,
     },
     user_id: {

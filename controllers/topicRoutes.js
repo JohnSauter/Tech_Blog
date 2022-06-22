@@ -9,7 +9,7 @@ router.get('/:id', withAuth, async (req, res) => {
   try {
     const topic_id = req.params.id;
     const express_topic_data = await Topic.findByPk(topic_id, {
-      include: [User],
+      include: [User, Response],
     });
     if (express_topic_data === null) {
       res.status(404).end();

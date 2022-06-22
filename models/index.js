@@ -20,4 +20,13 @@ Response.belongsTo(Topic, {
   foreignKey: 'topic_id'
 });
 
+User.hasMany(Response, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE'
+});
+
+Response.belongsTo(User, {
+  foreignnKey: 'user_id'
+});
+
 module.exports = { User, Topic, Response };

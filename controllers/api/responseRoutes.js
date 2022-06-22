@@ -7,7 +7,6 @@ router.post('/', withAuth, async (req, res) => {
     const newResponse = await Response.create({
       ...req.body,
       user_id: req.session.user_id,
-      topic_id: req.session.topic_id,
     });
 
     res.status(201).json(newResponse);

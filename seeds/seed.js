@@ -23,11 +23,12 @@ const seedDatabase = async () => {
     topics.push(the_topic);
   };
 
-  /* As we create responses, randomly assign each to a topic.  */
+  /* As we create responses, randomly assign each to a topic annd user.  */
   for (const response of responseData) {
     await Response.create({
       ...response,
       topic_id: topics[Math.floor(Math.random() * topics.length)].id,
+      user_id: users[Math.floor(Math.random() * users.length)].id,
     });
   }
 

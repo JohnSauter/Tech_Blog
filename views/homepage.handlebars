@@ -1,15 +1,15 @@
 {{#each topics.topic_data}}
 <div class="cell">
-<div class="card">
-      <a href='/topic/{{this.id}}'>
+  <div class="card">
+    <a href='/topic/{{this.id}}'>
       <div class='card-divider'>
         <h2>{{this.subject}}</h2>
+        <p>Created: {{this.createdAt}}</p>
       </div>
       <div class='card-section'>
-        <p>{{this.contents}}</p>
+        <p>{{this.content}}</p>
       </div>
     </a>
   </div>
-  </div>
-  </div>
+</div>
 {{/each}}

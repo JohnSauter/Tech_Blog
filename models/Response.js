@@ -15,13 +15,20 @@ Response.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    contents: {
+    content: {
       type: DataTypes.TEXT,
     },
     topic_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'topic',
+        key: 'id',
+      },
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
         key: 'id',
       },
     },

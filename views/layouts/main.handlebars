@@ -1,63 +1,57 @@
 <!DOCTYPE html>
 <html lang='en'>
 
-  <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <title>{{page_title}}</title>
-    <link rel='stylesheet' href='/css/foundation.css' />
-  </head>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>{{page_title}}</title>
+  <link rel='stylesheet' href='/css/foundation.css' />
+</head>
 
-  <body>
-    <header class='grid-container fluid'>
-      <div class='grid-x grid-margin-x'>
-        <!-- Display the logout and dashboard buttons only if the user
+<body>
+  <header class='grid-container fluid'>
+    <div class='grid-x grid-margin-x'>
+      <!-- Display the logout and dashboard buttons only if the user
         is logged in.  Otherwise, display the login, home page
         and dashboard buttons.     
         -->
-        <div class='cell'>
-          {{#if logged_in}}
-            <div class='top-bar'>
-              <nav class='top-bar-left'>
-                <ul class='menu expanded'>
-                  <li><button class='button' id='home'>Home</button></li>
-                  <li><button
-                      class='button'
-                      id='dashboard'
-                    >Dashboard</button></li>
-                  <li><button class='button' id='logout'>Logout</button></li>
-                </ul>
-              </nav>
-            </div>
-          {{else}}
-            <div class='top-bar'>
-              <nav class='top-bar-left'>
-                <ul class='menu expanded'>
-                  <li><button class='button' id='home'>Home</button></li>
-                  <li><button
-                      class='button'
-                      id='dashboard'
-                    >Dashboard</button></li>
-                  <li><button class='button' id='login'>login</button></li>
-                </ul>
-              </nav>
-            </div>
-          {{/if}}
+      <div class='cell'>
+        {{#if logged_in}}
+        <div class='top-bar'>
+          <nav class='top-bar-left'>
+            <ul class='menu expanded'>
+              <li><button class='button' id='home'>Home</button></li>
+              <li><button class='button' id='dashboard'>Dashboard</button></li>
+              <li><button class='button' id='logout'>Logout</button></li>
+            </ul>
+          </nav>
         </div>
+        {{else}}
+        <div class='top-bar'>
+          <nav class='top-bar-left'>
+            <ul class='menu expanded'>
+              <li><button class='button' id='home'>Home</button></li>
+              <li><button class='button' id='dashboard'>Dashboard</button></li>
+              <li><button class='button' id='login'>login</button></li>
+            </ul>
+          </nav>
+        </div>
+        {{/if}}
       </div>
-    </header>
-    <h1>
-      {{page_title}}
-    </h1>
-    <main class='grid-x grid-container-fluid'>
-      <div class='grid-x grid-margin-x'>
+    </div>
+  </header>
+  <h1>
+    {{page_title}}
+  </h1>
+  <main class='grid-x grid-container-fluid'>
+    <div class='grid-x grid-margin-x'>
       {{{body}}}
-      </div>
-    </main>
-    <footer>
+    </div>
+  </main>
+  <footer>
 
-    </footer>
-    <script src='/js/homepage_buttons.js'></script>
-  </body>
+  </footer>
+  <script src='/js/homepage_buttons.js'></script>
+</body>
 
 </html>

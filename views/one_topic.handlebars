@@ -1,6 +1,53 @@
-<ul>
-  <li>Subject: {{topic.subject}}</li>
-  <li>Contents: {{topic.contents}}</li>
-  <li>user name: {{topic.user.name}}</li>
-  <li>user email: {{topic.user.email}}</li>
-</ul>
+<div class="cell">
+  <div class="card">
+    <div class="card-divider">
+      <h3>subject: {{topic.subject}}</h3>
+      <p>Created by: {{topic.user.name}}
+        on {{topic.createdAt}}
+      </p>
+    </div>
+    <div class="card-divider">
+      <h3>content: {{topic.content}}</h3>
+    </div>
+  </div>
+  <div class="card-section">
+    <h2>Responses</h2>
+    <ul id="responses">
+      {{#each topic.responses}}
+      <li><a href='/response/{{this.id}}'>{{this.subject}}</a>
+        <button class="button" data-id="{{this.id}}">delete</button>
+        <p>Created by {{this.user_id.name}}
+          on {{this.createdAt}}.
+        </p>
+        <p>{{this.content}}</p>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
+</div>
+
+<div class='cell'>
+  <h2>Create Response</h2>
+  <form id="response_create_form" data-id="{{topic.id}}">
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="cell">
+          <label>Subject
+            <input type="text" id='response_subject' placeholder="subject">
+          </label>
+        </div>
+        <div class="cell">
+          <label>Contents
+            <textarea id='response_content' placeholder="content"></textarea>
+          </label>
+          <div class='cell'>
+            <button class='button' type='submit'>submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script src='../js/response.js'></script>
