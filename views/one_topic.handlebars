@@ -16,7 +16,7 @@
       {{#each topic.responses}}
       <li><a href='/response/{{this.id}}'>{{this.subject}}</a>
         <button class="button" data-id="{{this.id}}">delete</button>
-        <p>Created by {{this.user_id.name}}
+        <p>Created by {{this.user.name}}
           on {{this.createdAt}}.
         </p>
         <p>{{this.content}}</p>
