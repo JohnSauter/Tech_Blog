@@ -30,7 +30,7 @@ document
 async function topic_delete_handler(event) {
   const the_button = event.target;
   const topic_id = the_button.dataset.id;
-  /* If there is no data-id onn the target, we must be
+  /* If there is no data-id on the target, we must be
    * seeing a click from somewhere else in the
    * page.  Ignore it.  */
   if (topic_id == null) {

@@ -18,7 +18,7 @@ app.set('view engine', 'handlebars');
 
 let session_secret = process.env.SESSION_SECRET;
 if (!session_secret) {
-  session_secret = 'default session secret'
+  session_secret = 'default session secret';
 }
 const sess = {
   secret: session_secret,
@@ -26,8 +26,8 @@ const sess = {
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize
-  })
+    db: sequelize,
+  }),
 };
 
 app.use(session(sess));

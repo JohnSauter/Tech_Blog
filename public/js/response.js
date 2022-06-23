@@ -28,24 +28,25 @@ const response_create_form_handler = async (event) => {
 
 the_form.addEventListener('submit', response_create_form_handler);
 
+
 /* Delete a response */
 
 async function response_delete_handler(event) {
   const the_button = event.target;
   const response_id = the_button.dataset.id;
-  /* If there is no data-id onn the target, we must be
+  /* If there is no data-id on the target, we must be
    * seeing a click from somewhere else in the
    * page.  Ignore it.  */
   if (response_id == null) {
     return;
   }
   
-  const response = await fetch('api/response/' + response_id, {
+  const response = await fetch('/api/response/' + response_id, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
   });
   if (response.ok) {
-    /* On success, refresh the page to show that the topic
+    /* On success, refresh the page to show that the response
      * is no longer present.  */
     document.location.replace('/topic' + topic_id);
   } else {
@@ -56,3 +57,36 @@ async function response_delete_handler(event) {
 document
   .querySelector('#responses')
   .addEventListener('click', response_delete_handler);
+
+/* Delete a topic */
+
+async function topic_delete_handler(event) {
+  const the_button = event.target;
+  const button_topic_id = the_button.dataset.id;
+  /* If there is no data-id on the target, or
+   * the wronng one, we must be seeing a click 
+   * from somewhere else in the page.  Ignore it.  
+   */
+  if (button_topic_id == null) {
+    return;
+  }
+  if (button_topic_id != topic_id) {
+    return;
+  }
+  
+  const response = await fetch('/api/topic/' + topic_id, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  if (response.ok) {
+    /* On success, return to the daskboard to show that the topic
+     * is no longer present.  */
+    document.location.replace('/dashboard');
+  } else {
+    alert('Failed to delete topic.');
+  }
+}
+
+document
+  .querySelector('#topic-delete')
+  .addEventListener('click', topic_delete_handler);
