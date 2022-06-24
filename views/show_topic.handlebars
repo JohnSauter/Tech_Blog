@@ -22,19 +22,25 @@
     <div class="card-section">
       <h2>Responses</h2>
       <ul id="responses">
-        {{#each topic.responses}}
         {{#if logged_in}}
+        {{#each topic.responses}}
         <li><a href='/response/{{this.id}}'>{{this.subject}}</a>
-        {{else}}
-        <li>{{this.subject}}</li>
-        {{/if}}
           <p>{{this.content}}</p>
           <p>Created by {{this.user.name}}
             on {{this.createdAt}}.
           </p>
-
         </li>
         {{/each}}
+        {{else}}
+        {{#each topic.responses}}
+        <li>{{this.subject}}
+          <p>{{this.content}}</p>
+          <p>Created by {{this.user.name}}
+            on {{this.createdAt}}.
+          </p>
+        </li>
+        {{/each}}
+        {{/if}}
       </ul>
     </div>
   </div>

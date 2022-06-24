@@ -11,7 +11,7 @@ async function response_delete_handler(event) {
   if (response_id == null) {
     return;
   }
-  const topic_id = the_buttonn.dataset.topic_id;
+  const topic_id = the_button.dataset.topicId;
 
   const response = await fetch('/api/response/' + response_id, {
     method: 'DELETE',
@@ -21,7 +21,7 @@ async function response_delete_handler(event) {
     /* On success, return to the topic page
      * to show that the response is no longer present.
      */
-    document.location.replace('/topic' + topic_id);
+    document.location.replace('/topic/' + topic_id);
   } else {
     alert('Failed to delete response.');
   }
