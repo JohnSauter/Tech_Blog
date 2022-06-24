@@ -1,0 +1,68 @@
+<div class="cell">
+  <div class="card">
+    <div class="card-divider">
+      <p>{{topic.subject}}</p>
+    </div>
+    <div class="card-divider">
+      <p>{{topic.content}}</p>
+    </div>
+    <div class="card-divider">
+      <p>created by {{topic.user.name}}
+        on {{topic.createdAt}}
+      </p>
+    </div>
+    {{#if logged_in}}
+    <div class="card-divider">
+      <div class="cell">
+        <button id="topic-edit" class="button" data-id="{{topic.id}}">edit</button>
+        <button id="topic-delete" class="button" data-id="{{topic.id}}">delete</button>
+      </div>
+    </div>
+    {{/if}}
+    <div class="card-section">
+      <h2>Responses</h2>
+      <ul id="responses">
+        {{#each topic.responses}}
+        {{#if logged_in}}
+        <li><a href='/response/{{this.id}}'>{{this.subject}}</a>
+        {{else}}
+        <li>{{this.subject}}</li>
+        {{/if}}
+          <p>{{this.content}}</p>
+          <p>Created by {{this.user.name}}
+            on {{this.createdAt}}.
+          </p>
+
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{{#if logged_in}}
+<div class='cell'>
+  <h2>Create Response</h2>
+  <form id="response-create-form" data-id="{{topic.id}}">
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="cell">
+          <label>Subject
+            <input type="text" id='response-subject' placeholder="subject">
+          </label>
+        </div>
+        <div class="cell">
+          <label>Contents
+            <textarea id='response-content' placeholder="content"></textarea>
+          </label>
+          <div class='cell'>
+            <button class='button' type='submit' data-id="{{topic.id}}">submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+{{/if}}
+
+<script src='../js/show_topic.js'></script>

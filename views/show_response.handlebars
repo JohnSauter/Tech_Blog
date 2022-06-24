@@ -1,0 +1,23 @@
+<div class="cell">
+  <div class="card">
+    <div class="card-divider">
+      <h3>subject: {{response.subject}}</h3>
+      <p>Created by {{response.user.name}}
+        for topic {{response.topic.subject}}
+        on {{response.createdAt}}
+      </p>
+    </div>
+    <div class="card-divider">
+      <p>content: {{response.content}}</p>
+    </div>
+    <div class="card-section">
+      <div class="cell">
+        <button id="response-edit" class="button" data-id="{{response.id}}">edit</button>
+        <button id="response-delete" class="button" data-id="{{response.id}}">delete</button>
+        <ul class="menu"><li><a href="/topic/{{response.topic.id}}">Return to topic</a></li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src='../js/show_response.js'></script>

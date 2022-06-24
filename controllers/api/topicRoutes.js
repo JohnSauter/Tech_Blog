@@ -20,9 +20,17 @@ router.post('/', withAuth, async (req, res) => {
 /* Delete to /api/topic/<id> deletes topic <id>.  */
 router.delete('/:id', withAuth, async (req, res) => {
   try {
+    const topic_id = req.params.id;
+    const the_express_topic = await Topic.findByPk(topic_id);
+    if (!the_express_topic) {
+      res.status(404).json({ message: 'No topic found with this id!' });
+      return;
+    }
+    const the_topic = the_express_topic.get({plain: true});
+
     const topicData = await Topic.destroy({
       where: {
-        id: req.params.id,
+        id: topic_id,
         user_id: req.session.user_id,
       },
     });
@@ -100,7 +108,7 @@ router.put('/:id', withAuth, async (req, res) => {
     const user_data = express_user_data.get({ plain: true });
 
     const result = await Topic.update(
-      { subject: subject, content: content },
+      { subject: subject, content: content, user_id: user_id },
       { where: { id: topic_id } }
     );
 

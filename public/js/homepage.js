@@ -49,3 +49,19 @@ const home_btn = document.querySelector('#home');
 if (home_btn) {
   home_btn.addEventListener('click', home);
 }
+
+/* The optional topic button, used when we are editinng
+ * a response.  */
+function topic_button (event) {
+  const the_button = event.target;
+  const topic_id = the_button.dataset.topic_id;
+ 
+  if (topic_id == null) {
+    return;
+  }
+  document.location.replace('/topic/' + topic_id);
+}
+const topic_btn = document.querySelector('#topic');
+if (topic_btn) {
+  topic_btn.addEventListener('click', topic_button);
+}

@@ -12,12 +12,12 @@
     <ul id="topics">
       {{#each user.topics}}
       <li><a href='/topic/{{this.id}}'>{{this.subject}}</a>
-        <button class="button" data-id="{{this.id}}">delete</button>
+        <!-- <button class="button" data-id="{{this.id}}">delete</button>
+        -->
       </li>
       {{/each}}
     </ul>
   </div>
-</div>
 </div>
 
 <div class='cell'>
@@ -43,4 +43,4 @@
   </form>
 </div>
 
-<script src='./js/topic.js'></script>
+<script src='./js/dashboard.js'></script>

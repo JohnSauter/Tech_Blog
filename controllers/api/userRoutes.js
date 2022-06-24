@@ -48,6 +48,8 @@ router.post('/login', async (req, res) => {
   }
 });
 
+/* Log out a user.  By destroyinng his session
+ * we erase the loggedIn variable.  */
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {

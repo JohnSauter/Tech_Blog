@@ -3,7 +3,7 @@ const { Topic, Response, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 // get one topic
-router.get('/:id', withAuth, async (req, res) => {
+router.get('/:id', async (req, res) => {
   // find a single topic by its `id`
   // be sure to include its associated User data
   try {
@@ -16,7 +16,7 @@ router.get('/:id', withAuth, async (req, res) => {
     } else {
       const topic_data = express_topic_data.get({ plain: true });
 
-      res.render('one_topic', {
+      res.render('show_topic', {
         topic: topic_data,
         logged_in: req.session.logged_in,
         page_title: 'Topic',

@@ -20,6 +20,7 @@ Response.init(
     },
     topic_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: 'topic',
         key: 'id',
@@ -27,6 +28,7 @@ Response.init(
     },
     user_id: {
       type: DataTypes.INTEGER,
+      allowNNull: false,
       references: {
         model: 'user',
         key: 'id',

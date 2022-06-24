@@ -29,7 +29,6 @@ router.get('/', async (req, res) => {
       page_title: 'The Tech Blog',
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -45,21 +44,31 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+/* Show the dashboard page.  */
 router.get('/dashboard', withAuth, async (req, res) => {
   /* Display information about this user.  */
   const user_id = req.session.user_id;
   if (user_id === null) {
-    res.status(404).end();
+    req.session.logged_in = false;
+    res.render('login');
+    return;
   }
   const express_user_data = await User.findByPk(user_id, {
     include: [Topic],
     attributes: { exclude: ['password'] },
   });
-  if (express_user_data === null) {
-    res.status(404).end();
+
+  /* If the user has been deleted from the database
+   * but his session is still open, send him to the
+   * login page.  */
+  if (!express_user_data) {
+    req.session.logged_in = false;
+    res.render('login');
+    return;
   }
+
   const user_data = express_user_data.get({ plain: true });
-  res.render('one_user', {
+  res.render('dashboard', {
     user: user_data,
     logged_in: req.session.logged_in,
     page_title: 'Your Dashboard',
