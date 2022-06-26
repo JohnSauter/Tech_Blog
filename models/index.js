@@ -26,7 +26,7 @@ User.hasMany(Response, {
 });
 
 Response.belongsTo(User, {
-  foreignnKey: 'user_id'
+  foreignKey: 'user_id'
 });
 
 module.exports = { User, Topic, Response };

@@ -6,43 +6,44 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0' />
   <title>{{page_title}}</title>
   <link rel='stylesheet' href='/css/foundation.css' />
+  <link rel="stylesheet" href="/css/app.css" />
 </head>
 
 <body>
   <header class='data-sticky-container'>
-    <div class='title-bar' data-sticky 
-    data-options="marginTop:0;" 
-    data-top-anchor="1"
-    style="width:100%">
+    <div class='title-bar' data-sticky data-options="marginTop:0;" data-top-anchor="1" style="width:100%">
       {{#if logged_in}}
       <nav class='title-bar-left'>
         <ul class='menu expanded'>
-          <li><button class='button' id='home'>Home</button></li>
-          <li><button class='button' id='dashboard'>Dashboard</button></li>
+          <li><button class='button nav-button' id='home'>Home</button></li>
+          <li><button class='button nav-button' id='dashboard'>Dashboard</button></li>
           {{#if page_topic_id}}
-          <li><button class="button" id="topic" 
-            data-topic_id="{{page_topic_id}}">Topic</button></li>
+          <li><button class="button nav-button" id="topic" data-topic_id="{{page_topic_id}}">Topic</button></li>
           {{/if}}
-          <li><button class='button' id='logout'>Logout</button></li>
+          <li><button class='button nav-button' id='logout'>Logout</button></li>
         </ul>
       </nav>
       {{else}}
       <nav class='title-bar-left'>
         <ul class='menu expanded'>
-          <li><button class='button' id='home'>Home</button></li>
-          <li><button class='button' id='dashboard'>Dashboard</button></li>
-          <li><button class='button' id='login'>login</button></li>
+          <li><button class='button nav-button' id='home'>Home</button></li>
+          <li><button class='button nav-button' id='dashboard'>Dashboard</button></li>
+          <li><button class='button nav-button' id='login'>Login</button></li>
         </ul>
       </nav>
       {{/if}}
     </div>
   </header>
-  <h1>
-    {{page_title}}
-  </h1>
-  <main class='grid-x grid-container-fluid'>
-    <div class='grid-x grid-margin-x'>
-      {{{body}}}
+  <main>
+    <div id="page-title-background">
+      <div id="page-title">
+        {{page_title}}
+      </div>
+    </div>
+    <div class='grid-x grid-container-fluid'>
+      <div class='grid-x grid-margin-x'>
+        {{{body}}}
+      </div>
     </div>
   </main>
   <footer>

@@ -1,22 +1,21 @@
 <div class="cell">
-  <div class="card">
-    <div class="card-divider">
-      <h3>name: {{user.name}}</h3>
+  <div id="topics">
+    {{#each user.topics}}
+    <div class='cell'>
+      <a href='/topic/{{this.id}}'>
+        <div class='topic-description'>
+          <div class="grid-x">
+            <div class='cell small-6 topic-subject'>
+              {{this.subject}}
+            </div>
+            <div class='cell small-6 topic-metadata'>Posted on
+              {{format_date this.createdAt}}</div>
+            <p>{{this.content}}</p>
+          </div>
+        </div>
+      </a>
     </div>
-    <div class="card-divider">
-      <h3>email: {{user.email}}</h3>
-    </div>
-  </div>
-  <div class="card-section">
-    <h2>Your Topics</h2>
-    <ul id="topics">
-      {{#each user.topics}}
-      <li><a href='/topic/{{this.id}}'>{{this.subject}}</a>
-        <!-- <button class="button" data-id="{{this.id}}">delete</button>
-        -->
-      </li>
-      {{/each}}
-    </ul>
+    {{/each}}
   </div>
 </div>
 

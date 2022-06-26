@@ -5,7 +5,9 @@ const withAuth = require('../utils/auth');
 /* Home page shows the topics.  */
 router.get('/', async (req, res) => {
   try {
-    const express_topic_data = await Topic.findAll();
+    const express_topic_data = await Topic.findAll({
+      include: [User],
+    });
 
     const topic_data = express_topic_data.map((topic) =>
       topic.get({ plain: true })
@@ -41,7 +43,10 @@ router.get('/login', (req, res) => {
     return;
   }
   /* Otherwise, send his browser the login page.  */
-  res.render('login');
+  res.render('login', {
+    logged_in: req.session.logged_in,
+    page_title: 'Log in or Sign Up',
+  });
 });
 
 /* Show the dashboard page.  */
@@ -63,7 +68,10 @@ router.get('/dashboard', withAuth, async (req, res) => {
    * login page.  */
   if (!express_user_data) {
     req.session.logged_in = false;
-    res.render('login');
+    res.render('login', {
+      logged_in: req.session.logged_in,
+      page_title: 'Log in or Sign Up',
+    });
     return;
   }
 
